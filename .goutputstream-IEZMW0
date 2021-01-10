@@ -1,0 +1,194 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>My Academic Production</title><link rel="stylesheet" type="text/css" href="mybib/style.css"><style type="text/css" id="zoterostylesheet" >
+.bibshowhide {display:none;}
+.bib-venue-short, .bib-venue {display:none;}.bib-venue-short::before, .bib-venue::before, .blink a::before  {content: attr(data-before);}.blink {margin:0;margin-right:15px;padding:0;display:none;}</style></head><body><div class="bibliography"><script type="text/javascript" src="mybib/clipboard.min.js"></script><script type="text/javascript" src="mybib/jquery.min.js"></script><script type="text/javascript">jQuery(document).ready(function () {jQuery('.blink a').click(showThis);
+        jQuery("div.bib").add("div.cite").append('\n<button class="btn"><img src="mybib/clippy.svg" width=13 alt="Copy to clipboard"></button>');
+            new Clipboard('.btn',{
+    text: function(trigger) {
+    var prevCol = trigger.parentNode.style.color;
+    trigger.parentNode.style.color="grey";
+    setTimeout(function(){trigger.parentNode.style.color=prevCol;}, 200);
+    return trigger.parentNode.childNodes[0].textContent;}});
+        jQuery(".bib-venue-short").each(function(){$(this).attr('data-before', $(this).html()); $(this).html("")});
+        jQuery(".blink a").each(function(){$(this).attr('data-before', $(this).html()); $(this).html("")});
+        });
+function dwnD(data) {
+    filename = "article.ris"
+    var pom = document.createElement('a');
+    var isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1 && navigator.userAgent && !navigator.userAgent.match('CriOS');
+    var mime = (isSafari?"text/plain":"application/x-research-info-systems");
+    pom.href = window.URL.createObjectURL(new Blob([atob(data)], {type: mime+";charset=utf-8"}));
+    pom.download = filename;
+    document.body.appendChild(pom);
+    pom.click();
+    setTimeout(function(){document.body.removeChild(pom);}, 100);
+    return(void(0));}
+function showThis(e) {
+    elem = e.target;
+    if (elem.parentNode) {
+    var elems = elem.parentNode.parentNode.getElementsByTagName('*');
+    for (i in elems) {
+            if((' ' + elems[i].className + ' ').indexOf(' ' + 'bibshowhide' + ' ') > -1)
+            { if (elems[i].parentNode != elem.parentNode)
+        elems[i].style.display = 'none';
+            }}
+    elems = elem.parentNode.getElementsByTagName('*');
+    for (i in elems) {
+            if((' ' + elems[i].className + ' ').indexOf(' ' + 'bibshowhide' + ' ') > -1)
+        { elems[i].style.display = 'block';
+          hideagain = elems[i];
+              e.stopPropagation();
+          turnoff = function(e){
+          if (! jQuery.contains(this, e.target))
+              this.style.display = 'none';
+          else
+              jQuery(document).one("click",turnoff_b); // rebind itself
+          }
+          turnoff_b = turnoff.bind(elems[i])
+          jQuery(document).one("click",turnoff_b);
+              return(void(0));
+            }}}
+    return(void(0));}
+function changeCSS() {
+    if (!document.styleSheets) return;
+    var theRules = new Array();
+    //ss = document.styleSheets[document.styleSheets.length-1];
+    var ss = document.getElementById('zoterostylesheet');
+    if (ss) {
+    ss = ss.sheet
+    if (ss.cssRules)
+            theRules = ss.cssRules
+    else if (ss.rules)
+            theRules = ss.rules
+    else return;
+    theRules[theRules.length-1].style.display = 'inline';
+    }
+}
+changeCSS();
+</script><h1 class="title">My Academic Production</h1>
+<div id="bib-preamble" style="visibility:hidden;"><ul id="bib-cat-collection" class="bib-cat"><li class='link'><a style='white-space: nowrap;' href='#' onclick='searchF(["ADBHRPE3"],"Journal Articles",1);return false;'>Journal Articles<span class='cat_count'> (2)</span></a></li>
+<li class='link'><a style='white-space: nowrap;' href='#' onclick='searchF(["2C7IJTXT"],"Selected Works",1);return false;'>Selected Works<span class='cat_count'> (1)</span></a></li>
+<li class='link'><a style='white-space: nowrap;' href='#' onclick='searchF(["YM8IKNXT"],"Talks",1);return false;'>Talks<span class='cat_count'> (1)</span></a></li>
+<li class='link'><a style='white-space: nowrap;' href='#' onclick='searchF(["92GJ4FJV"],"Theses",1);return false;'>Theses<span class='cat_count'> (1)</span></a></li>
+</ul><form id="pubSearchBox" name="pubSearchBox" style="visibility:hidden;"><input id="pubSearchInputBox" type="text" name="keyword" placeholder="keywords">&nbsp;<input id="pubSearchButton" type="button" value="Search" onClick="searchF()"></form><h2 id="searchTermSectionTitle" class="collectiontitle"></h2><script type="text/javascript">
+  function getURLParameter(name) {
+    return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
+  }
+  jQuery( document ).ready(function() {
+    jQuery('#pubSearchBox,#bib-preamble').css("visibility","visible");
+    var kw = getURLParameter("keyword");
+    if (kw) {
+        jQuery('#pubSearchInputBox').val(kw);
+        searchF([kw]);
+    }
+  });
+  jQuery.expr[":"].icontains = jQuery.expr.createPseudo(function(arg) {
+    return function( elem ) {
+        return jQuery(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
+    };});
+function searchF(searchTerms, shown, disjunctive) {
+  var i=document.pubSearchBox.keyword.value;
+  searchTerms = searchTerms || (i!=""&&i.split(" "));
+  shown = shown || searchTerms;
+  jQuery(".bib-item").css("display", "none");
+  var q = ".bib-item";
+  if (disjunctive)
+  { for (x in searchTerms) {jQuery(".bib-item:icontains('"+searchTerms[x]+"')").css("display", "block");}
+  }
+  else
+  { jQuery.each(searchTerms, function(i,x) {q = q + ":icontains('"+x+"')";});
+    jQuery(q).css("display", "block");}
+  jQuery("#searchTermSectionTitle").html(searchTerms.length>0?"<a href='#' onclick='searchF([]);'>&#x2715;</a> "+shown:"");
+  jQuery(".collectiontitle").parent(".full-bib-section,.short-bib-section").css("display", "block");
+  jQuery(".collectiontitle").parent(".full-bib-section,.short-bib-section").each(function(){
+    var y = jQuery(this).find(".bib-item:visible");
+    if (y.length==0) {jQuery(this).css("display","none");}
+  });
+}
+  jQuery(function() {    // <== Doc ready
+  // stackoverflow q 3971524
+    var inputVal = jQuery("#pubSearchInputBox").val(),
+        timer,
+        checkForChange = function() {
+            var self = this; // or just use .bind(this)
+            if (timer) { clearTimeout(timer); }
+            // check for change of the text field after each key up
+            timer = setTimeout(function() {
+                if(self.value != inputVal) {
+                    searchF();
+                    inputVal = self.value
+                }
+            }, 250);
+        };
+    jQuery("#pubSearchInputBox").bind('keyup paste cut', checkForChange);
+});</script></div><div class="full-bib-section"><a id='2C7IJTXT' style='{display: block; position: relative; top: -150px; visibility: hidden;}'></a><h2 class="collectiontitle">Selected Works</h2>
+<div class="bib-item"><div class="bib-details"><div class="csl-entry">dos Santos, R. M., Hilbers, J. P., &amp; Hendriks, A. J. (2017). <span class="doctitle"><a class="doctitle" href="http://dx.doi.org/10.1016/j.ecolind.2017.04.017">Evaluation of models capacity to predict size spectra parameters in ecosystems under stress.</a></span> <i>Ecological Indicators</i>, <i>79</i>(August 2016), 114–121. <a href="https://doi.org/10.1016/j.ecolind.2017.04.017">https://doi.org/10.1016/j.ecolind.2017.04.017</a></div><span class='bib-kw' style='display:none;'>2C7IJTXT ZXV38F8J year__2017 type__journalArticle ""</span></div><div class="bib-venue">Ecological Indicators</div><div class="blinkitems"><div class="blink"><a    >Abstract</a><div class="bibshowhide"><div class="abstract">Size spectra are important indicators of biomass distribution‚ for fundamental understanding as well as for application in management. While many size spectra models have been developed‚ it is unclear how response to stress varies across models and in comparison to data. In the present study‚ we therefor collected papers on empirical size spectra in stressed aquatic ecosystems and compared the results to theoretical models’ predictions from literature. A general decrease of the slope‚ as suggested by most of the studied models‚ is supported by the data found. The investigated empirical studies revealed a strong trend for the slope: 40 out of 57 studies reported a decrease with stress. Deviations from the linear model increased in 10 out of 20 cases and the intercept became larger in 25 out of 43 cases. The data concerning specific impact drivers is generally consistent and supportive of current expert opinions. Our results support that an integration of deviation from the linear model and intercept in the size spectra models could provide better coupling between modeling and field surveys for some stressors.</div></div></div><div class="blink"><a   href="http://dx.doi.org/10.1016/j.ecolind.2017.04.017" >PDF</a></div><div class="blink"><a    >BIB</a><div class="bibshowhide"><div class="bib">@article{dos_santos_evaluation_2017,
+	title = {Evaluation of models capacity to predict size spectra parameters in ecosystems under stress},
+	volume = {79},
+	issn = {1470160X},
+	url = {http://dx.doi.org/10.1016/j.ecolind.2017.04.017},
+	doi = {10.1016/j.ecolind.2017.04.017},
+	language = {English},
+	number = {August 2016},
+	journal = {Ecological Indicators},
+	author = {dos Santos, Rafael Menezes and Hilbers, Jelle Peter and Hendriks, Aalbert Jan},
+	year = {2017},
+	pages = {114--121},
+}</div></div></div><span class='Z3988' title='url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_id=info%3Adoi%2F10.1016%2Fj.ecolind.2017.04.017&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=Evaluation%20of%20models%20capacity%20to%20predict%20size%20spectra%20parameters%20in%20ecosystems%20under%20stress&amp;rft.jtitle=Ecological%20Indicators&amp;rft.volume=79&amp;rft.issue=August%202016&amp;rft.aufirst=Rafael%20Menezes&amp;rft.aulast=dos%20Santos&amp;rft.au=Rafael%20Menezes%20dos%20Santos&amp;rft.au=Jelle%20Peter%20Hilbers&amp;rft.au=Aalbert%20Jan%20Hendriks&amp;rft.date=2017&amp;rft.pages=114-121&amp;rft.spage=114&amp;rft.epage=121&amp;rft.issn=1470160X&amp;rft.language=English'></span></div></div></div><div class="full-bib-section"><a id='ZXV38F8J' style='{display: block; position: relative; top: -150px; visibility: hidden;}'></a></div><div class="full-bib-section"><a id='ADBHRPE3' style='{display: block; position: relative; top: -150px; visibility: hidden;}'></a><h3 class="collectiontitle">Journal Articles</h3>
+<div class="bib-item"><div class="bib-details"><div class="csl-entry">Mascarenhas, R., Ruziska, F. M., Moreira, E. F., Campos, A. B., Loiola, M., Reis, K., Trindade-Silva, A. E., Barbosa, F. A. S., Salles, L., Menezes, R., Veiga, R., Coutinho, F. H., Dutilh, B. E., Guimarães, P. R. J., Assis, A. P. A., Ara, A., Miranda, J. G. V., Andrade, R. F. S., Vilela, B., &amp; Meirelles, P. M. (2020). <span class="doctitle"><a class="doctitle" href="https://www.frontiersin.org/articles/10.3389/fgene.2019.01344/full">Integrating Computational Methods to Investigate the Macroecology of Microbiomes.</a></span> <i>Frontiers in Genetics</i>, <i>10</i>. <a href="https://doi.org/10.3389/fgene.2019.01344">https://doi.org/10.3389/fgene.2019.01344</a></div><span class='bib-kw' style='display:none;'>ADBHRPE3 ZXV38F8J year__2020 venue_short__Front. Genet. type__Frontiers "Special scales" "co-occurrence networks" "machine learning" "microbial community modeling" "microbial macroecology"</span></div><div class="bib-venue">Frontiers in Genetics</div><div class="bib-venue-short">Front. Genet.</div><div class="blinkitems"><div class="blink"><a    >Abstract</a><div class="bibshowhide"><div class="abstract">Studies in microbiology have long been mostly restricted to small spatial scales. However‚ recent technological advances‚ such as new sequencing methodologies‚ have ushered an era of large-scale sequencing of environmental DNA data from multiple biomes worldwide. These global datasets can now be used to explore long standing questions of microbial ecology. New methodological approaches and concepts are being developed to study such large-scale patterns in microbial communities‚ resulting in new perspectives that represents a significant advances for both microbiology and macroecology. Here‚ we identify and review important conceptual‚ computational‚ and methodological challenges and opportunities in microbial macroecology. Specifically‚ we discuss the challenges of handling and analyzing large amounts of microbiome data to understand taxa distribution and co-occurrence patterns. We also discuss approaches for modeling microbial communities based on environmental data‚ including information on biological interactions to make full use of available Big Data. Finally‚ we summarize the methods presented in a general approach aimed to aid microbiologists in addressing fundamental questions in microbial macroecology‚ including classical propositions (such as “everything is everywhere‚ but the environment selects”) as well as applied ecological problems‚ such as those posed by human induced global environmental changes.</div></div></div><div class="blink"><a   href="https://www.frontiersin.org/articles/10.3389/fgene.2019.01344/full" >PDF</a></div><div class="blink"><a    >BIB</a><div class="bibshowhide"><div class="bib">@article{mascarenhas2020integrating,
+	title = {Integrating {Computational} {Methods} to {Investigate} the {Macroecology} of {Microbiomes}},
+	volume = {10},
+	issn = {1664-8021},
+	url = {https://www.frontiersin.org/articles/10.3389/fgene.2019.01344/full},
+	doi = {10.3389/fgene.2019.01344},
+	language = {English},
+	urldate = {2020-10-14},
+	journal = {Frontiers in Genetics},
+	author = {Mascarenhas, Rilquer and Ruziska, Flávia M. and Moreira, Eduardo Freitas and Campos, Amanda B. and Loiola, Miguel and Reis, Kaike and Trindade-Silva, Amaro E. and Barbosa, Felipe A. S. and Salles, Lucas and Menezes, Rafael and Veiga, Rafael and Coutinho, Felipe H. and Dutilh, Bas E. and Guimarães, Paulo R. Jr and Assis, Ana Paula A. and Ara, Anderson and Miranda, José G. V. and Andrade, Roberto F. S. and Vilela, Bruno and Meirelles, Pedro Milet},
+	year = {2020},
+	keywords = {Special scales, co-occurrence networks, machine learning, microbial community modeling, microbial macroecology},
+}</div></div></div><span class='Z3988' title='url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_id=info%3Adoi%2F10.3389%2Ffgene.2019.01344&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=Integrating%20Computational%20Methods%20to%20Investigate%20the%20Macroecology%20of%20Microbiomes&amp;rft.jtitle=Frontiers%20in%20Genetics&amp;rft.stitle=Front.%20Genet.&amp;rft.volume=10&amp;rft.aufirst=Rilquer&amp;rft.aulast=Mascarenhas&amp;rft.au=Rilquer%20Mascarenhas&amp;rft.au=Fl%C3%A1via%20M.%20Ruziska&amp;rft.au=Eduardo%20Freitas%20Moreira&amp;rft.au=Amanda%20B.%20Campos&amp;rft.au=Miguel%20Loiola&amp;rft.au=Kaike%20Reis&amp;rft.au=Amaro%20E.%20Trindade-Silva&amp;rft.au=Felipe%20A.%20S.%20Barbosa&amp;rft.au=Lucas%20Salles&amp;rft.au=Rafael%20Menezes&amp;rft.au=Rafael%20Veiga&amp;rft.au=Felipe%20H.%20Coutinho&amp;rft.au=Bas%20E.%20Dutilh&amp;rft.au=Paulo%20R.%20Jr%20Guimar%C3%A3es&amp;rft.au=Ana%20Paula%20A.%20Assis&amp;rft.au=Anderson%20Ara&amp;rft.au=Jos%C3%A9%20G.%20V.%20Miranda&amp;rft.au=Roberto%20F.%20S.%20Andrade&amp;rft.au=Bruno%20Vilela&amp;rft.au=Pedro%20Milet%20Meirelles&amp;rft.date=2020&amp;rft.issn=1664-8021&amp;rft.language=English'></span></div></div><div class="bib-item"><div class="bib-details"><div class="csl-entry">dos Santos, R. M., Hilbers, J. P., &amp; Hendriks, A. J. (2019). In response to “An allometric tragedy of the commons: Response to the article ‘Evaluation of models capacity to predict size spectra parameters in ecosystems under stress.’” <i>Ecological Indicators</i>, <i>96</i>, 747–749. <a href="https://doi.org/10.1016/j.ecolind.2018.04.037">https://doi.org/10.1016/j.ecolind.2018.04.037</a></div><span class='bib-kw' style='display:none;'>ADBHRPE3 ZXV38F8J year__2019 venue_short__Ecological Indicators type__journalArticle ""</span></div><div class="bib-venue">Ecological Indicators</div><div class="bib-venue-short">Ecological Indicators</div><div class="blinkitems"><div class="blink"><span class="label">abstract</span></div><div class="blink"><a   href="https://linkinghub.elsevier.com/retrieve/pii/S1470160X18302905" >PDF</a></div><div class="blink"><a    >BIB</a><div class="bibshowhide"><div class="bib">@article{dos_santos_response_2019,
+	title = {In response to “{An} allometric tragedy of the commons: {Response} to the article ‘{Evaluation} of models capacity to predict size spectra parameters in ecosystems under stress’”},
+	volume = {96},
+	issn = {1470160X},
+	shorttitle = {In response to “{An} allometric tragedy of the commons},
+	url = {https://linkinghub.elsevier.com/retrieve/pii/S1470160X18302905},
+	doi = {10.1016/j.ecolind.2018.04.037},
+	language = {English},
+	urldate = {2021-01-02},
+	journal = {Ecological Indicators},
+	author = {dos Santos, Rafael Menezes and Hilbers, Jelle Peter and Hendriks, Aalbert Jan},
+	month = jan,
+	year = {2019},
+	pages = {747--749},
+}</div></div></div><span class='Z3988' title='url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_id=info%3Adoi%2F10.1016%2Fj.ecolind.2018.04.037&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=In%20response%20to%20%E2%80%9CAn%20allometric%20tragedy%20of%20the%20commons%3A%20Response%20to%20the%20article%20%E2%80%98Evaluation%20of%20models%20capacity%20to%20predict%20size%20spectra%20parameters%20in%20ecosystems%20under%20stress%E2%80%99%E2%80%9D&amp;rft.jtitle=Ecological%20Indicators&amp;rft.stitle=Ecological%20Indicators&amp;rft.volume=96&amp;rft.aufirst=Rafael%20Menezes&amp;rft.aulast=dos%20Santos&amp;rft.au=Rafael%20Menezes%20dos%20Santos&amp;rft.au=Jelle%20Peter%20Hilbers&amp;rft.au=Aalbert%20Jan%20Hendriks&amp;rft.date=2019-01&amp;rft.pages=747-749&amp;rft.spage=747&amp;rft.epage=749&amp;rft.issn=1470160X&amp;rft.language=English'></span></div></div><div class="bib-item"><div class="bib-details"><div class="csl-entry">dos Santos, R. M., Hilbers, J. P., &amp; Hendriks, A. J. (2017). <span class="doctitle"><a class="doctitle" href="http://dx.doi.org/10.1016/j.ecolind.2017.04.017">Evaluation of models capacity to predict size spectra parameters in ecosystems under stress.</a></span> <i>Ecological Indicators</i>, <i>79</i>(August 2016), 114–121. <a href="https://doi.org/10.1016/j.ecolind.2017.04.017">https://doi.org/10.1016/j.ecolind.2017.04.017</a></div><span class='bib-kw' style='display:none;'>ADBHRPE3 ZXV38F8J 2C7IJTXT year__2017 type__journalArticle ""</span></div><div class="bib-venue">Ecological Indicators</div><div class="blinkitems"><div class="blink"><a    >Abstract</a><div class="bibshowhide"><div class="abstract">Size spectra are important indicators of biomass distribution‚ for fundamental understanding as well as for application in management. While many size spectra models have been developed‚ it is unclear how response to stress varies across models and in comparison to data. In the present study‚ we therefor collected papers on empirical size spectra in stressed aquatic ecosystems and compared the results to theoretical models’ predictions from literature. A general decrease of the slope‚ as suggested by most of the studied models‚ is supported by the data found. The investigated empirical studies revealed a strong trend for the slope: 40 out of 57 studies reported a decrease with stress. Deviations from the linear model increased in 10 out of 20 cases and the intercept became larger in 25 out of 43 cases. The data concerning specific impact drivers is generally consistent and supportive of current expert opinions. Our results support that an integration of deviation from the linear model and intercept in the size spectra models could provide better coupling between modeling and field surveys for some stressors.</div></div></div><div class="blink"><a   href="http://dx.doi.org/10.1016/j.ecolind.2017.04.017" >PDF</a></div><div class="blink"><a    >BIB</a><div class="bibshowhide"><div class="bib">@article{dos_santos_evaluation_2017,
+	title = {Evaluation of models capacity to predict size spectra parameters in ecosystems under stress},
+	volume = {79},
+	issn = {1470160X},
+	url = {http://dx.doi.org/10.1016/j.ecolind.2017.04.017},
+	doi = {10.1016/j.ecolind.2017.04.017},
+	language = {English},
+	number = {August 2016},
+	journal = {Ecological Indicators},
+	author = {dos Santos, Rafael Menezes and Hilbers, Jelle Peter and Hendriks, Aalbert Jan},
+	year = {2017},
+	pages = {114--121},
+}</div></div></div><span class='Z3988' title='url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_id=info%3Adoi%2F10.1016%2Fj.ecolind.2017.04.017&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=Evaluation%20of%20models%20capacity%20to%20predict%20size%20spectra%20parameters%20in%20ecosystems%20under%20stress&amp;rft.jtitle=Ecological%20Indicators&amp;rft.volume=79&amp;rft.issue=August%202016&amp;rft.aufirst=Rafael%20Menezes&amp;rft.aulast=dos%20Santos&amp;rft.au=Rafael%20Menezes%20dos%20Santos&amp;rft.au=Jelle%20Peter%20Hilbers&amp;rft.au=Aalbert%20Jan%20Hendriks&amp;rft.date=2017&amp;rft.pages=114-121&amp;rft.spage=114&amp;rft.epage=121&amp;rft.issn=1470160X&amp;rft.language=English'></span></div></div></div><div class="full-bib-section"><a id='YM8IKNXT' style='{display: block; position: relative; top: -150px; visibility: hidden;}'></a><h3 class="collectiontitle">Talks</h3>
+<div class="bib-item"><div class="bib-details"><div class="csl-entry">Menezes, R. (2020, January 20). <span class="doctitle"><i>Community Interactions: Integratig Dynamical Systems and Network Science</i></span> [Student Short Talk]. School of Community Ecology: from principles to patterns, IFT-UNESP, São Paulo, Brazil.</div><span class='bib-kw' style='display:none;'>ZXV38F8J YM8IKNXT year__2020 type__presentation ""</span></div><div class="blinkitems"><div class="blink"><span class="label">abstract</span></div><div class="blink"><span class="label">url</span></div><div class="blink"><a    >BIB</a><div class="bibshowhide"><div class="bib">@misc{menezes2020community,
+	address = {IFT-UNESP, São Paulo, Brazil},
+	type = {Student {Short} {Talk}},
+	title = {Community {Interactions}: {Integratig} {Dynamical} {Systems} and {Network} {Science}},
+	language = {English},
+	author = {Menezes, Rafael},
+	month = jan,
+	year = {2020},
+}</div></div></div><span class='Z3988' title='url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft.type=presentation&amp;rft.title=Community%20Interactions%3A%20Integratig%20Dynamical%20Systems%20and%20Network%20Science&amp;rft.aufirst=Rafael&amp;rft.aulast=Menezes&amp;rft.au=Rafael%20Menezes&amp;rft.date=2020-01-20&amp;rft.language=English'></span></div></div></div><div class="full-bib-section"><a id='92GJ4FJV' style='{display: block; position: relative; top: -150px; visibility: hidden;}'></a><h3 class="collectiontitle">Theses</h3>
+<div class="bib-item"><div class="bib-details"><div class="csl-entry">Menezes, R. (2020). <span class="doctitle"><a class="doctitle" href="/production/msc_thesis.pdf"><i>Exploring Ecological Interactions Using the Generalized Lotka-Volterra Model: Coexistence and Resilience of Populations</i></a></span> [Federal University of Bahia]. /production/msc_thesis.pdf</div><span class='bib-kw' style='display:none;'>92GJ4FJV ZXV38F8J year__2020 type__thesis ""</span></div><div class="blinkitems"><div class="blink"><span class="label">abstract</span></div><div class="blink"><a   href="/production/msc_thesis.pdf" >PDF</a></div><div class="blink"><a    >BIB</a><div class="bibshowhide"><div class="bib">@phdthesis{menezes2020exploring,
+	address = {Salvador},
+	title = {Exploring {Ecological} {Interactions} {Using} the {Generalized} {Lotka}-{Volterra} {Model}: {Coexistence} and {Resilience} of {Populations}},
+	url = {/production/msc_thesis.pdf},
+	language = {English},
+	school = {Federal University of Bahia},
+	author = {Menezes, Rafael},
+	month = dec,
+	year = {2020},
+}</div></div></div><span class='Z3988' title='url_ver=Z39.88-2004&amp;ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fzotero.org%3A2&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adissertation&amp;rft.title=Exploring%20Ecological%20Interactions%20Using%20the%20Generalized%20Lotka-Volterra%20Model%3A%20Coexistence%20and%20Resilience%20of%20Populations&amp;rft.inst=Federal%20University%20of%20Bahia&amp;rft.aufirst=Rafael&amp;rft.aulast=Menezes&amp;rft.au=Rafael%20Menezes&amp;rft.date=2020-12-15&amp;rft.tpages=128&amp;rft.language=English'></span></div></div></div><div id="zbw_credits" style="text-align:right;">A <a href="https://github.com/davidswelt/zot_bib_web">zot_bib_web</a> bibliography.</div></div></body></html>
