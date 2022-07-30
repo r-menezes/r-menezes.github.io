@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[8],{VefE:function(e,t,a){"use strict";a.r(t);var n=a("q1tI"),l=a.n(n),r=(a("Wbzz"),a("Bl7J")),i=a("vrFN");t.default=function(){return l.a.createElement(r.a,null,l.a.createElement(i.a,{title:"Curriculum Vitae"}),l.a.createElement("div",null,l.a.createElement("iframe",{src:"CV.pdf",title:"dummy",style:{width:"90vw",height:"80vh"}})))}}}]);
+//# sourceMappingURL=component---src-pages-curriculum-vitae-js-5c96459fc417c97d3b3c.js.map
